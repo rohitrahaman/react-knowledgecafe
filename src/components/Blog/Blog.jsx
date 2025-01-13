@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'; 
 import { IoMdBookmark } from "react-icons/io";
-const Blog = ({blog, handleToAddBookmarks}) => {
+const Blog = ({blog, handleToAddBookmarks,handleMakeAsRead }) => {
     const {title, cover,author_img, author, posted_date, reading_time, hashtags} =blog
     return (
         <div className='mb-20'>
@@ -9,6 +9,7 @@ const Blog = ({blog, handleToAddBookmarks}) => {
             {
                 hashtags.map((hashtag, idx)=><span key={idx}> #{hashtag}</span>)
             }
+            
             <div className='flex justify-between mb-4'>
                 <div className='flex'>
                 <div>
@@ -25,13 +26,15 @@ const Blog = ({blog, handleToAddBookmarks}) => {
                     <IoMdBookmark></IoMdBookmark></button>
                 </div>
             </div>
+            <button onClick={()=>handleMakeAsRead(reading_time)} className='text-slate-800 underline'>Make As Read</button>
         </div>
     );
 };
 
 Blog.propTypes = {
     blog: PropTypes.object.isRequired,
-    handleToAddBookmarks: PropTypes.func.isRequired
+    handleToAddBookmarks: PropTypes.func.isRequired,
+    handleMakeAsRead : PropTypes.func.isRequired
     
 }
 
